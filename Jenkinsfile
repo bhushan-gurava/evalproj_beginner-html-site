@@ -2,11 +2,9 @@ pipeline {
 	agent{ 
 		label 'EvalFinalProj-Agent'
 	}
-	
     environment {
         DOCKERHUB_CREDENTIALS=credentials('4e3d30b0-0ae5-46df-9361-6b450c6db8c6')
     }
-	
     stages {
         stage('Start') {
             steps {
