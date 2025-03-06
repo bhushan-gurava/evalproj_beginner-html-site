@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Docker') {
             steps {
-                sh 'sudo docker build /home/ubuntu/jenkins/workspace/FinalProject -t docker6161/image'
+                sh 'sudo docker build /home/ubuntu/jenkins/workspace/Build -t docker6161/image'
                 sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 sh 'sudo docker push docker6161/image'
             }
