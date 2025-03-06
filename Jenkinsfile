@@ -17,10 +17,13 @@ pipeline {
             }
         }
         stage('Docker') {
+		
             steps {
-                sh 'sudo docker build /home/ubuntu/jenkins/workspace/Build -t docker6161/image'
-                sh "sudo docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
-                sh 'sudo docker push docker6161/image'
+		withCredentials([sshUserPrivateKey(credentialsId: '4e3d30b0-0ae5-46df-9361-6b450c6db8c6', keyFileVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
+	                sh 'sudo docker build /home/ubuntu/jenkins/workspace/Build -t docker6161/image'
+	                sh 'sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+	                sh 'sudo docker push docker6161/image'
+		}
             }
         }
         stage('Kubernetes') {
