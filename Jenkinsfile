@@ -1,9 +1,9 @@
 pipeline {
-	agent{ 
-		label 'EvalFinalProj-Agent'
+	agent { 
+		dockerfile true
 	}
     environment {
-        DOCKERHUB_CREDENTIALS=credentials('36c3d51d-cb2a-4eb5-8853-42f0ebb1a1f0')
+        DOCKERHUB_CREDENTIALS=credentials('e12f5850-04d6-469c-85e1-3a9fa3431c50')
     }
     stages {
         stage('Start') {
@@ -18,15 +18,15 @@ pipeline {
         }
         stage('Docker') {
             steps {
-				sh 'sudo docker build /home/ubuntu/jenkins/workspace/Build -t bhushang300912/image03072025'
-				sh 'sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
-				sh 'sudo docker push bhushang300912/image03072025'
+		sh 'sudo docker build /home/ubuntu/jenkins/workspace/EvalProj-CI -t bhushang300912/image03072025'
+		sh 'sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+		sh 'sudo docker push bhushang300912/image03072025'
             }
         }
         stage('Kubernetes') {
             steps {
-                sh 'kubectl apply -f /home/ubuntu/jenkins/workspace/Build/deploy.yaml'
-                sh 'kubectl apply -f /home/ubuntu/jenkins/workspace/Build/service.yaml'
+                sh 'kubectl apply /home/ubuntu/jenkins/workspace/Build/deploy.yaml'
+                sh 'kubectl apply /home/ubuntu/jenkins/workspace/Build/service.yaml'
             }
         }
         stage('Finish') {
