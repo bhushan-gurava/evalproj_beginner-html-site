@@ -13,9 +13,9 @@ spec:
         metadata:
             labels:
                 app: custom
-spec:
-    containers:
-      - name: custom
-        image: bhushang300912/image03072025
-        ports:
-          - containerPort: 80
+        spec:
+            containers:
+              - name: custom
+                image: bhushang300912/image03072025
+                ports:
+                  - containerPort: 80
