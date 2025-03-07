@@ -25,8 +25,8 @@ pipeline {
         }
         stage('Kubernetes') {
             steps {
-                sh 'kubectl create -f /home/ubuntu/jenkins/workspace/EvalProj-CI/deploy.yaml'
-                sh 'kubectl create -f /home/ubuntu/jenkins/workspace/EvalProj-CI/service.yaml'
+                sh 'kubectl apply -f /home/ubuntu/jenkins/workspace/EvalProj-CI/deploy.yaml'
+                sh 'kubectl apply -f /home/ubuntu/jenkins/workspace/EvalProj-CI/service.yaml'
             }
         }
         stage('Finish') {
