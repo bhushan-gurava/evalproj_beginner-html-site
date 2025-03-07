@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-	label 'EvalProj-CI'
+	label 'Build-Agent'
     }
     environment {
         DOCKERHUB_CREDENTIALS=credentials('e12f5850-04d6-469c-85e1-3a9fa3431c50')
