@@ -25,8 +25,8 @@ pipeline {
         }
         stage('Kubernetes') {
             steps {
-                sh 'kubectl create -f deploy.yml'
-                sh 'kubectl create -f service.yml'
+                sh 'kubectl create -f /home/ubuntu/jenkins/workspace/Build/deploy.yml'
+                sh 'kubectl create -f /home/ubuntu/jenkins/workspace/Build/service.yml'
             }
         }
         stage('Finish') {
