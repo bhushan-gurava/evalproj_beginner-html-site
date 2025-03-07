@@ -16,6 +16,6 @@ spec:
 spec:
     containers:
       - name: custom
-        image: docker6161/image
+        image: bhushang300912/image03072025
         ports:
           - containerPort: 80

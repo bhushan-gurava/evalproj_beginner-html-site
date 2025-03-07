@@ -3,7 +3,7 @@ pipeline {
 		label 'EvalFinalProj-Agent'
 	}
     environment {
-        DOCKERHUB_CREDENTIALS=credentials('36c3d51d-cb2a-4eb5-8853-42f0ebb1a1f0')
+        DOCKERHUB_CREDENTIALS=credentials('4e3d30b0-0ae5-46df-9361-6b450c6db8c6')
     }
     stages {
         stage('Start') {
@@ -17,10 +17,13 @@ pipeline {
             }
         }
         stage('Docker') {
+		
             steps {
-		sh 'sudo docker build /home/ubuntu/jenkins/workspace/Build -t docker6161/image'
-		sh 'sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
-		sh 'sudo docker push docker6161/image'
+		withCredentials([sshUserPrivateKey(credentialsId: '4e3d30b0-0ae5-46df-9361-6b450c6db8c6', keyFileVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
+	                sh 'sudo docker build /home/ubuntu/jenkins/workspace/Build -t bhushang300912/image03072025'
+	                sh 'sudo docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+	                sh 'sudo docker push bhushang300912/image03072025'
+		}
             }
         }
         stage('Kubernetes') {
