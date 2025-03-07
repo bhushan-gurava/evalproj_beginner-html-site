@@ -25,8 +25,8 @@ pipeline {
         }
         stage('Kubernetes') {
             steps {
-                sh 'kubectl apply /home/ubuntu/jenkins/workspace/Build/deploy.yaml'
-                sh 'kubectl apply /home/ubuntu/jenkins/workspace/Build/service.yaml'
+                sh 'kubectl apply -f /home/ubuntu/jenkins/workspace/Build/deploy.yaml'
+                sh 'kubectl apply -f /home/ubuntu/jenkins/workspace/Build/service.yaml'
             }
         }
         stage('Finish') {
